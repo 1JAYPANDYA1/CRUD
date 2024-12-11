@@ -19,7 +19,8 @@ exports.getTodo=async(req,res)=>{
 }
 exports.updateTodo=async(req,res)=>{
     try {
-        const {todoId,updatedtodo}=req.body
+        const todoId=req.body._id 
+        const updatedtodo=req.body
         const respone = await todoService.updateTodo(todoId,updatedtodo)
         res.status(200).json(respone)
     } catch (error) {
@@ -28,8 +29,7 @@ exports.updateTodo=async(req,res)=>{
 }
 exports.deleteTodo=async(req,res)=>{
     try {
-        const {todoId}=req.body 
-        console.log("id is : ",todoId)
+        const {todoId}=req.body
         const respone = await todoService.deleteTodo(todoId)
         res.status(200).json(respone)
     } catch (error) {

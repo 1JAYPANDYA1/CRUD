@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const todo = require('../models/todoModel');
 require('dotenv').config();
 
-// MongoDB connection
 const connectDB = async () => {
     try {
         await mongoose.connect('mongodb://localhost:27017/admin', {
@@ -16,7 +15,6 @@ const connectDB = async () => {
     }
 };
 
-// Seed data
 const seedTodos = async () => {
     const todos = [
         { name: 'Learn Node.js', duration: '2 hours' },
@@ -27,11 +25,9 @@ const seedTodos = async () => {
     ];
 
     try {
-        // Clear the existing collection
         await todo.deleteMany();
         console.log('Cleared the todo collection');
 
-        // Insert seed data
         await todo.insertMany(todos);
         console.log('Seed data inserted successfully');
     } catch (error) {
@@ -41,5 +37,4 @@ const seedTodos = async () => {
     }
 };
 
-// Run the script
 connectDB().then(seedTodos);
